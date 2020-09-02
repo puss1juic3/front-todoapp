@@ -4,16 +4,16 @@ import './RegisterForm.scss';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 import { connect } from 'react-redux';
 import { registerUser } from '../../redux/actions/registerUser';
 import { bindActionCreators } from 'redux';
-import RegisterPromo from '../RegisterPromo/RegisterPromo';
 import { validateInput } from '../../redux/actions/validateInput';
 import { formSubmit } from '../../redux/actions/formSubmit';
-import Snackbar from '@material-ui/core/Snackbar';
 
-import MuiAlert from '@material-ui/lab/Alert';
+import RegisterPromo from '../RegisterPromo/RegisterPromo';
 
 const Alert = (props) => <MuiAlert elevation={6} variant="filled" {...props} />;
 
