@@ -12,6 +12,7 @@ import { registerUser } from '../../redux/actions/registerUser';
 import { bindActionCreators } from 'redux';
 import { validateInput } from '../../redux/actions/validateInput';
 import { formSubmit } from '../../redux/actions/formSubmit';
+import { snackbarClose } from '../../redux/actions/snackbarClose';
 
 import RegisterPromo from '../RegisterPromo/RegisterPromo';
 
@@ -42,11 +43,15 @@ const RegisterForm = (props) => {
   return (
     <form className="registerForm" onSubmit={(event) => handleSubmit(event)}>
       <Snackbar
-        open={props.register.serverResponse.type.length > 0}
-        autoHideDuration={1000}
+        open={props.register.serverResponse.openSnackbar}
+        autoHideDuration={3000}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        onClose={props.snackbarClose}
       >
-        <Alert severity={props.register.serverResponse.type}>
+        <Alert
+          severity={props.register.serverResponse.type}
+          onClose={props.snackbarClose}
+        >
           {props.register.serverResponse.msg}
         </Alert>
       </Snackbar>
@@ -91,7 +96,6 @@ const RegisterForm = (props) => {
           </p>
         </div>
       </div>
-
       <RegisterPromo />
     </form>
   );
@@ -99,11 +103,10 @@ const RegisterForm = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    registerUser: bindActionCreators(registerUser, dispatch),
-
-    formSubmit: bindActionCreators(formSubmit, dispatch),
-
     validateInput: bindActionCreators(validateInput, dispatch),
+    formSubmit: bindActionCreators(formSubmit, dispatch),
+    registerUser: bindActionCreators(registerUser, dispatch),
+    snackbarClose: bindActionCreators(snackbarClose, dispatch),
   };
 };
 

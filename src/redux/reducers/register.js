@@ -6,6 +6,7 @@ import {
   VALIDATE_PASSWORD,
   REGISTER_ERROR,
   REGISTER_SUCCESS,
+  SNACKBAR_CLOSE,
 } from '../types';
 
 const initialState = {
@@ -25,6 +26,7 @@ const initialState = {
     errorMessage: '',
   },
   serverResponse: {
+    openSnackbar: false,
     type: '',
     msg: '',
   },
@@ -57,8 +59,18 @@ export const register = (state = initialState, action) => {
       return {
         ...state,
         serverResponse: {
+          openSnackbar: true,
           type: 'success',
           msg: 'Registration completed successfully',
+        },
+      };
+    }
+    case SNACKBAR_CLOSE: {
+      return {
+        ...state,
+        serverResponse: {
+          ...state.serverResponse,
+          openSnackbar: false,
         },
       };
     }
