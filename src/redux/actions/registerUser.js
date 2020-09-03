@@ -21,9 +21,8 @@ export const registerUser = () => async (dispatch, getState) => {
       'Content-type': 'application/json',
     },
     body: JSON.stringify(user),
-  }).catch((response) => {
-    if (!response.ok) {
-      dispatch(registerError('Could not connect to server'));
-    }
+  }).then((res) => {
+    if (!res.ok) dispatch(registerError(res.statusText));
+    else dispatch(registerSuccess());
   });
 };
