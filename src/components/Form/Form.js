@@ -4,13 +4,15 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 import './Form.scss';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
+import LoginForm from '../LoginForm/LoginForm';
 
 const Form = (props) => {
   return (
     <div className="form">
       <Paper>
         {props.serverResponse.error}
-        <RegisterForm />
+        {/*<RegisterForm />*/}
+        <LoginForm />
       </Paper>
     </div>
   );
